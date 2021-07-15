@@ -145,8 +145,8 @@ if(msg.indexOf("/궁합봐줘") ==0  && msg.includes(",")){
    
    java.lang.Thread.sleep(5000);
 
-   var result = names +"의 궁합은...";
-   result+= point +" % ! \n";
+   var result = names +"\n의 궁합은...\n\n";
+   result+= point +" % ! \n\n";
    
    if(point <20)
       result+= "니넨 걍 마주치지도 마라...;";
@@ -156,7 +156,7 @@ if(msg.indexOf("/궁합봐줘") ==0  && msg.includes(",")){
       result += "나쁘지 않음";
    else if (point < 80)
       result += "이 정도면 ㅆㅅㅌㅊ.. ㅋㅋ";
-   else if (point <99)
+   else if (point <=99)
       result += "오늘 니네 방 잡자 그냥";
    else if (point == 100)
       result += "... 말도 안돼";
