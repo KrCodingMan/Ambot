@@ -68,10 +68,17 @@ else if(["/시간","/지금","/지금시간"].includes(msg.trim()))
     replier.reply("지금은 " + day.getHours() + "시 " + day.getMinutes() + "분 " + day.getSeconds() + "초입니다.");
 }
  if(["/ㅊㅊ","/출첵"].includes(msg.trim())) {
-    let sw = "";
-    sw += ". " + sender
+   let sw = "";
+   sw += "" + sender
+    if(!check.includes(sender))
+    {
     check.push(sw)
     replier.reply(sw+" 출첵 완료")
+    }
+    else 
+    {
+       replier.reply(randompicker(["님 이미 출첵 했는데요;", "님 이미 출첵함", "치명적 오류 발생,,, \n에러코드 : 중복출첵6974,,\n 5초 뒤 방을 폭파 시킵니다.. \n 5... .4.... "]));
+    }
 }
 if(msg.trim() == "/출석목록") {
     var day = new Date();
@@ -113,6 +120,50 @@ if(["/앰생력확인","/앰확","/앰생력측정","/앰측"].includes(msg.trim
    }
    replier.reply(sender + "님의 앰생력은 "   + persondic[sender] +  "입니다.");
 }
+
+if(msg.indexOf("/궁합봐줘") ==0  && msg.includes(",")){
+
+   var names = msg.replace("/궁합봐줘","");
+   var onlynames = names.replace(" ","");
+   onlynames = onlynames.replace(",","");
+   var namelist = names.split(",");
+   if(namelist[0] == namelist[1])
+   {
+      replier.reply("같은사람끼리 계산시키지 마라...")
+   }
+   else{
+   var chars = onlynames.split('');
+
+   var point =0;
+   for(var i=0; i< chars.length;i++){
+      point += chars[i].charCodeAt(0);
+   }
+   while(point > 100)
+   {
+      point -=100;
+   }
+   
+   java.lang.Thread.sleep(5000);
+
+   var result = names +"의 궁합은...";
+   result+= point +" % ! \n";
+   
+   if(point <20)
+      result+= "니넨 걍 마주치지도 마라...;";
+   else if(point < 40)
+      result += "걍 친구로 지내는게 좋을듯ㅋㅋ";
+   else if(point < 60)
+      result += "나쁘지 않음";
+   else if (point < 80)
+      result += "이 정도면 ㅆㅅㅌㅊ.. ㅋㅋ";
+   else if (point <99)
+      result += "오늘 니네 방 잡자 그냥";
+   else if (point == 100)
+      result += "... 말도 안돼";
+
+   replier.reply(result);
+}
+}
 if(msg.trim() == "엄"){
    replier.reply("준")
 }if(msg.trim() == "준"){
@@ -150,12 +201,13 @@ else if(["미안","ㅈㅅ","죄송"].includes(msg.trim())){
 }
 if(["/명령어","/help","/?","/도와줘"].includes(msg.trim()))
 {
-replier.reply("[만든이]코딩맨\n[버전]1.02\n[명령어]\n디스코드,디코,디코주소\n시간,지금\n소개양식\n점심,저녁\n출첵,ㅊㅊ,출석목록\n기만자추가,기만목록,기만자목록\n앰생력확인,앰생력측정\nvs,대결,ㄷㄱ\n명령어,help\n개발자,이거누가만든겨")
+replier.reply("[만든이]코딩맨\n[버전]1.03\n[명령어]\n디스코드,디코,디코주소\n시간,지금\n소개양식\n점심,저녁\n출첵,ㅊㅊ,출석목록\n기만자추가,기만목록,기만자목록\n앰생력확인,앰생력측정\n궁합봐줘이름,이름\nvs,대결,ㄷㄱ\n궁합봐줘\n명령어,help\n개발자,이거누가만든겨")
 }
 if(sender in persondic)
 {
    persondic[sender] = persondic[sender] + Math.floor(Math.random()*3);
 }
+
 }
 
 function randompicker(list){
