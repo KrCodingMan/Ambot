@@ -223,7 +223,7 @@ else if(["미안","ㅈㅅ","죄송"].includes(msg.trim())){
 }
 if(["/명령어","/help","/?","/도와줘"].includes(msg.trim()))
 {
-	printHelp()
+	replier.reply(helpText);
 }
 if(sender in persondic)
 {
@@ -237,7 +237,7 @@ function randompicker(list){
     return list[rannum];
 }
 
-function printHelp() {
-	replier.reply("[만든이]코딩맨\n[버전]1.02\n[명령어]\n디스코드,디코,디코주소\n시간,지금\n소개양식\n점심,저녁\n출첵,ㅊㅊ,출석목록\n기만자추가,기만목록,기만자목록\n앰생력확인,앰생력측정\nvs,대결,ㄷㄱ\n명령어,help\n개발자,이거누가만든겨")
+var	helpText= 
+	"[만든이]코딩맨\n[버전]1.02\n[명령어]\n디스코드,디코,디코주소\n시간,지금\n소개양식\n점심,저녁\n출첵,ㅊㅊ,출석목록\n기만자추가,기만목록,기만자목록\n앰생력확인,앰생력측정\nvs,대결,ㄷㄱ\n명령어,help\n개발자,이거누가만든겨";
 }
 
