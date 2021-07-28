@@ -220,11 +220,53 @@ else if(["미안","ㅈㅅ","죄송"].includes(msg.trim())){
 }
 if(["/명령어","/help","/?","/도와줘"].includes(msg.trim()))
 {
-	replier.reply(printHelp());
+   replier.reply(printHelp());
 }
 if(sender in persondic)
 {
    persondic[sender] = persondic[sender] + Math.floor(Math.random()*3);
+}
+if(["/가져와"].includes(msg.trim()))
+{
+
+   var path = FileStream.getSdcardPath() + "/Ambot/Test/"+sender+ ".json";
+   let inputdata = "코딩믄"
+   let data = {"test" : inputdata};
+   FileStream.write(path,JSON.stringify(data));
+
+   let getdata = JSON.parse(FileStream.read(path));
+   replier.reply(getdata.test );  // /storage/emulated/0
+}
+if(msg.indexOf("/아이템정보") ==0){
+
+   var name = msg.replace("/아이템정보","");
+   var onlyname = name.replace(" ","");
+   
+   path =FileStream.getSdcardPath()+"/Ambot/TestGame/Item/"+onlyname+ ".json";
+      let getdata = JSON.parse(FileStream.read(path));
+      var resulttext = "["+getdata.itemname+"]\n" + 
+                     "가격 : " + getdata.sellprice + 
+                     "정보\n" + getdata.info;
+      replier.reply(resulttext);
+}
+if(msg.indexOf("/아이템추가") ==0  && msg.includes(",")){
+
+   var names = msg.replace("/아이템추가","");
+   var onlynames = names.replace(" ","");
+   onlynames = onlynames.replace(",","");
+   var namelist = names.split(",");
+   
+   var itemname = namelist[0];
+   var iteminfo = namelist[1] + "\n추가한 사람 : " + sender;
+   var itemvalue = Math.floor(Math.random()*100);
+   Math.ran
+
+   let savedata = {"itemname":itemname, "sellvalue":itemvalue, "info" : iteminfo}
+
+   var path = FileStream.getSdcardPath()+"/Ambot/TestGame/Item/"+itemname+ ".json";
+   FileStream.write(path,JSON.stringify(savedata));
+   replier.reply("아이템 추가 완료");
+
 }
 
 }
@@ -235,9 +277,8 @@ function randompicker(list){
 }
 
 function printHelp() {
-	var helpstr;
+   var helpstr;
    helpstr = "[만든이]코딩맨\n[버전]1.02\n[명령어]\n디스코드,디코,디코주소\n시간,지금\n소개양식\n점심,저녁\n출첵,ㅊㅊ,출석목록\n기만자추가,기만목록,기만자목록\n앰생력확인,앰생력측정\nvs,대결,ㄷㄱ\n명령어,help\n개발자,이거누가만든겨";
 
    return helpstr;
 }
-
