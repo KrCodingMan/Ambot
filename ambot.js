@@ -176,7 +176,26 @@ if(msg.trim() == "엄"){
    if( r == 1) {      //만약  r값이 1일때
    replier.reply("엄준식")
    }
-}if(msg.trim() == "섹"){
+}if(msg.trim() == "맹"){
+   replier.reply("주")
+}if(msg.trim() == "주"){
+   replier.reply("엽")
+}if(msg.trim() == "엽"){
+   var r= Math.floor(Math.random()*2) // r변수 선언 범위는 0~1까지의 정수
+   if( r == 0 ) {             // 만약 r값이 0일때
+   replier.reply("맹")
+   }
+   if( r == 1) {      //만약  r값이 1일때
+   replier.reply("맹주엽")
+   }
+}if(msg.trim() == "무"){
+   replier.reply("야")
+}if(msg.trim() == "야"){
+   replier.reply("호")
+}if(msg.trim() == "호"){
+   replier.reply("무")
+}
+if(msg.trim() == "섹"){
    replier.reply("스")
 }if(msg.trim() == "스"){
    replier.reply("섹")
