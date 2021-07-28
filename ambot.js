@@ -68,10 +68,17 @@ else if(["/시간","/지금","/지금시간"].includes(msg.trim()))
     replier.reply("지금은 " + day.getHours() + "시 " + day.getMinutes() + "분 " + day.getSeconds() + "초입니다.");
 }
  if(["/ㅊㅊ","/출첵"].includes(msg.trim())) {
-    let sw = "";
-    sw += ". " + sender
+   let sw = "";
+   sw += "" + sender
+    if(!check.includes(sender))
+    {
     check.push(sw)
     replier.reply(sw+" 출첵 완료")
+    }
+    else 
+    {
+       replier.reply(randompicker(["님 이미 출첵 했는데요;", "님 이미 출첵함", "치명적 오류 발생,,, \n에러코드 : 중복출첵6974,,\n 5초 뒤 방을 폭파 시킵니다.. \n 5... .4.... "]));
+    }
 }
 if(msg.trim() == "/출석목록") {
     var day = new Date();
@@ -113,6 +120,50 @@ if(["/앰생력확인","/앰확","/앰생력측정","/앰측"].includes(msg.trim
    }
    replier.reply(sender + "님의 앰생력은 "   + persondic[sender] +  "입니다.");
 }
+
+if(msg.indexOf("/궁합봐줘") ==0  && msg.includes(",")){
+
+   var names = msg.replace("/궁합봐줘","");
+   var onlynames = names.replace(" ","");
+   onlynames = onlynames.replace(",","");
+   var namelist = names.split(",");
+   if(namelist[0] == namelist[1])
+   {
+      replier.reply("같은사람끼리 계산시키지 마라...")
+   }
+   else{
+   var chars = onlynames.split('');
+
+   var point =0;
+   for(var i=0; i< chars.length;i++){
+      point += chars[i].charCodeAt(0);
+   }
+   while(point > 100)
+   {
+      point -=100;
+   }
+   
+   java.lang.Thread.sleep(5000);
+
+   var result = names +"\n의 궁합은...\n\n";
+   result+= point +" % ! \n\n";
+   
+   if(point <20)
+      result+= "니넨 걍 마주치지도 마라...;";
+   else if(point < 40)
+      result += "걍 친구로 지내는게 좋을듯ㅋㅋ";
+   else if(point < 60)
+      result += "나쁘지 않음";
+   else if (point < 80)
+      result += "이 정도면 ㅆㅅㅌㅊ.. ㅋㅋ";
+   else if (point <=99)
+      result += "오늘 니네 방 잡자 그냥";
+   else if (point == 100)
+      result += "... 말도 안돼";
+
+   replier.reply(result);
+}
+}
 if(msg.trim() == "엄"){
    replier.reply("준")
 }if(msg.trim() == "준"){
@@ -125,7 +176,26 @@ if(msg.trim() == "엄"){
    if( r == 1) {      //만약  r값이 1일때
    replier.reply("엄준식")
    }
-}if(msg.trim() == "섹"){
+}if(msg.trim() == "맹"){
+   replier.reply("주")
+}if(msg.trim() == "주"){
+   replier.reply("엽")
+}if(msg.trim() == "엽"){
+   var r= Math.floor(Math.random()*2) // r변수 선언 범위는 0~1까지의 정수
+   if( r == 0 ) {             // 만약 r값이 0일때
+   replier.reply("맹")
+   }
+   if( r == 1) {      //만약  r값이 1일때
+   replier.reply("맹주엽")
+   }
+}if(msg.trim() == "무"){
+   replier.reply("야")
+}if(msg.trim() == "야"){
+   replier.reply("호")
+}if(msg.trim() == "호"){
+   replier.reply("무")
+}
+if(msg.trim() == "섹"){
    replier.reply("스")
 }if(msg.trim() == "스"){
    replier.reply("섹")
@@ -156,6 +226,7 @@ if(sender in persondic)
 {
    persondic[sender] = persondic[sender] + Math.floor(Math.random()*3);
 }
+
 }
 
 function randompicker(list){
